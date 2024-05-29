@@ -8,6 +8,16 @@ Visualiza o botao
     Wait Until Element Is Visible    ${elemento}
     Element Should Be Visible        ${elemento}
 
+Visualiza o atalho
+    [Arguments]    ${elemento}
+    Wait Until Element Is Visible    ${elemento}
+    Element Should Be Visible        ${elemento}
+
+Clica no botao
+    [Arguments]     ${elemento}  
+    Click Element    ${elemento}
+
+
 Clica no botao e espera
     [Arguments]     ${elemento}    ${elementoAEsperar}
     Click Element    ${elemento}
