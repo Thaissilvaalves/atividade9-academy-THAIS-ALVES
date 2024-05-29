@@ -17,6 +17,10 @@ Clica no botao
     [Arguments]     ${elemento}  
     Click Element    ${elemento}
 
+Clica no atalho
+    [Arguments]     ${elemento}  
+    Click Element    ${elemento}
+
 
 Clica no botao e espera
     [Arguments]     ${elemento}    ${elementoAEsperar}

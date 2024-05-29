@@ -38,8 +38,8 @@ ${PAGAR_FATURA}           xpath=//android.view.View[@content-desc="Pagar fatura"
 ${RESUMO_FATURA}          xpath=//android.view.View[@content-desc="Resumo de faturas"]
 ${LIMITES_FATURA}         xpath=//android.view.View[@content-desc="Ajustar limites"]
 ${CARTAO_VIRTUAL}         xpath=//android.view.View[@content-desc="Cartão virtual"]
-${FATURA1}                xpath=//android.view.View[contains(@content-desc, "Pagamento recebido)]
-${FATURA2}                xpath=//android.view.View[contains(@content-desc, "Supermercado)]
+${FATURA1}                xpath=//android.view.View[contains(@content-desc, "Pagamento recebido")]
+${FATURA2}                xpath=//android.view.View[contains(@content-desc, "Supermercado")]
 ${FATURA3}                xpath=//android.view.View[@content-desc="Transferência enviada\nOntem\nBRENO FREITAS\nR$ 30,00\nPix"]
 ${PESQUISA_CARTAO}        xpath=//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[2]
 ${CARTAO_VOLTAR}          xpath=//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]
@@ -186,6 +186,7 @@ E consegue visualizar os dados da fatura
     Visualiza o atalho    ${LIMITES_FATURA}
     Visualiza o atalho    ${CARTAO_VIRTUAL}
 E consegue visualizar o histórico de transações do cartão
+    Swipe By Percent    50    90    50    20    1000
     Visualiza o atalho    ${FATURA1}
     Visualiza o atalho    ${FATURA2}
     Visualiza o atalho    ${FATURA3}
