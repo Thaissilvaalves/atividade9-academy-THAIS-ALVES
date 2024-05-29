@@ -12,7 +12,7 @@ ${BOTAO_PIX}    ${prefixoCarrossel}    /android.widget.Button[1]
 ${BOTAO_PAGAR}  ${prefixoCarrossel}    /android.widget.Button[2]
 ${BOTAO_TRANSFERIR}  ${prefixoCarrossel}    /android.widget.Button[3]
 ${BOTAO_DEPOSITAR}  ${prefixoCarrossel}    /android.widget.Button[4]
-${BOTAO_EMPRESTIMOS}  ${prefixoCarrossel}    /android.widget.Button[5]
+${BOTAO_EMPRESTIMOS}  ${prefixoCarrossel}    /android.widget.Button[1]
 ${BOTAO_RECARGA}  ${prefixoCarrossel}    /android.widget.Button[2]
 ${BOTAO_COBRAR}  ${prefixoCarrossel}    /android.widget.Button[3]
 ${BOTAO_DOACAO}  ${prefixoCarrossel}    /android.widget.Button[4]
@@ -85,7 +85,7 @@ ${RECARGA_NUMERO}      xpath=//android.widget.EditText
 
 #Cobrança
 ${COBRANCA_VALOR}    xpath=//android.widget.EditText[@text="R$ 0,00"]
-
+${CAMPO_COBRANCA}    xpath=//android.widget.EditText
   
 *** Keywords ***
 Dado que o usuário está na tela inicial
@@ -105,9 +105,9 @@ E consegue visualizar todas as funcoes do PIX
 Então consegue acessar a funcionalidade de pagamento
     Clica no botao    ${BOTAO_PAGAR}
 E consegue visualizar todas as funcoes de pagamento
-    Visualiza o botao    ${PAGAR_PIX}
-    Visualiza o botao    ${PAGAR_FATURA}
-    Visualiza o botao    ${PAGAR_BOLETO}
+    Visualiza o atalho    ${PAGAR_PIX}
+    Visualiza o atalho    ${PAGAR_FATURA}
+    Visualiza o atalho    ${PAGAR_BOLETO}
 
 Então consegue acessar a funcionalidade de transferência
     Clica no botao    ${BOTAO_TRANSFERIR}
@@ -118,7 +118,7 @@ E consegue visualizar todas as funcoes de transferência
     Visualiza o botao     ${TRANSFERIR_QRCODE}
 
 Então consegue acessar a funcionalidade de depósito
-    Clica no botao ${BOTAO_DEPOSITAR}
+    Clica no botao    ${BOTAO_DEPOSITAR}
 E consegue visualizar todas as funcoes de depósito
     Visualiza o atalho    ${DEPOSITAR_PIX}
     Visualiza o atalho    ${DEPOSITAR_BOLETO}
@@ -126,23 +126,38 @@ E consegue visualizar todas as funcoes de depósito
     Visualiza o atalho    ${DEPOSITAR_SALARIO}
 
 Então consegue acessar a funcionalidade de empréstimos
+    Swipe By Percent    90    40    0    40
     Clica no botao    ${BOTAO_EMPRESTIMOS}
 E consegue visualizar todas as funcoes de empréstimos
     Visualiza o atalho    ${VALOR_EMPRESTIMO}
     Visualiza o atalho    ${FUNCIONAMENTO_EMPRESTIMO}
     Visualiza o botao    ${NOVO_EMPRESTIMO}
 Então consegue acessar a funcionalidade de recarga de celular
+    Swipe By Percent    90    40    0    40
     Clica no botao    ${BOTAO_RECARGA}
 E consegue visualizar todas as funcoes de recarga de celular
     Visualiza o atalho    ${RECARGA_NUMERO}
+    ${texto_hint}=    Get Element Attribute    ${RECARGA_NUMERO}    hint
+    Should Contain    ${texto_hint}    Qual número você quer recarregar?
+    Should Contain    ${texto_hint}    (DDD) + Número
+    Input Text                     ${RECARGA_NUMERO}    31993966422
+    Element Should Contain Text    ${RECARGA_NUMERO}    (31) 99396-6422
 Então consegue acessar a funcionalidade de cobrança
+    Swipe By Percent    90    40    0    40
     Clica no botao    ${BOTAO_COBRAR}
 E consegue visualizar todas as funcoes de cobrança
     Visualiza o atalho    ${COBRANCA_VALOR}
+    Element Should Contain Text     ${COBRANCA_VALOR}    R$ 0,00
+    ${texto_hint}=    Get Element Attribute    ${CAMPO_COBRANCA}    hint
+    Should Contain    ${texto_hint}    Qual valor você quer receber?
+    Input Text                      ${CAMPO_COBRANCA}           1000
+    Element Should Contain Text     ${CAMPO_COBRANCA}    R$ 10,00
 
 Então consegue visualizar o botão de doação
+    Swipe By Percent    90    40    0    40
     Visualiza o botao    ${BOTAO_DOACAO}
 Então consegue visualizar o botão de encontrar atalhos
+    Swipe By Percent    90    40    0    40
     Visualiza o botao    ${BOTAO_ENCONTRARATALHOS}
 
 Então consegue acessar a funcionalidade de conta
